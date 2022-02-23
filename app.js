@@ -55,11 +55,18 @@ client.on('ready', () => {
 //     conn.end();
 // });
 
-client.on('messageCreate', message => {
+client.on('messageCreate', async message => {
 
-	if (message.content === '!button') {
-        const row = new MessageActionRow()
-        .addComponents([new MessageButton()
+	if (message.content.includes('!register')) {
+
+        let splitedString = message.content.split(" ");
+
+        if (splitedString.length < 2 || splitedString.length > 2) {
+            message.channel.send("La entrada de datos es erronea, pruebe de nuevo");
+        } else {
+            const row = new MessageActionRow()
+            .addComponents(
+            [new MessageButton()
             .setCustomId('accept')
             .setLabel('✅ Accept')
             .setStyle('SUCCESS'),
@@ -67,9 +74,23 @@ client.on('messageCreate', message => {
             .setCustomId('decline')
             .setLabel('❌ Decline')
             .setStyle('DANGER')]
-        );
+            );
 
-        message.channel.send({content:'body', components:[row]})
+            const m = await message.channel.send({content:'Botón de prueba', components:[row]});
+
+            const ifilter = i => i.user.id === message.author.id;
+
+            const collector = m.createMessageComponentCollector({ filter: ifilter, time:  1000000});
+
+            collector.on('collect', async i => {
+                await console.log(i);
+
+                if (i.customId === 'accept') {
+                    await i.deferUpdate();
+                    i.editReply({ content: `Registrado el usuario ${message.author.tag} con wallet ${splitedString[1]}`, components: []});
+                }
+            });
+        }
 	}
 });
 
