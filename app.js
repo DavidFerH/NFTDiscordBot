@@ -11,7 +11,7 @@ var conn = mysql.createConnection({
     host: '192.168.0.241',
     database: 'nftBot',
     user: 'david',
-    password: '71185239d'
+    password: 'Password1234'
 });
 
 // When the client is ready, run this code (only once)
