@@ -98,27 +98,4 @@ client.on('messageCreate', async message => {
 	}
 });
 
-
-// client.on('messageCreate', message => {
-//     console.log(message.author.tag + " dijo " + message.content);
-// });
-
-// client.on('messageCreate', message => {
-//     if (message.content === 'ping') {
-//         message.reply('pong');
-//     }
-
-//     if (message.content === 'Hola') {
-//         message.channel.send(`Hola ${message.author.tag}`);
-//         console.log(message);
-//     }
-
-//     if (message.content === `!contact ${message.author.tag}` && message.author.tag !== 'Bot#3247') {
-//         message.channel.send("Hola");
-//     } else if (message.author.tag !== 'Bot#3247'){
-//         message.channel.send("No se pudo encontrar al usuario");
-//     }
-// });
-
-// Login to Discord with your client's token
 client.login(token);
