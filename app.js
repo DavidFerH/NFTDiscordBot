@@ -16,7 +16,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, 'DIRECT_MESSAGES', '
 
 // When the client is ready, run this code (only once)
 client.on('ready', () => {
-	console.log(`Bot is ready as ${client.user.tag}`);
+	console.log(`Bot listo ${client.user.tag}`);
 });
 
 // client.on('messageCreate', message => {
